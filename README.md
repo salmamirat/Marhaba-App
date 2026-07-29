@@ -1,4 +1,41 @@
-# Marhba — Backend
+# Marhaba — Application d'Authentification Full-Stack
+
+Application mobile d'authentification complète (Express + PostgreSQL + Expo) avec double protection des routes : middlewares côté backend, `<Stack.Protected>` côté frontend.
+
+---
+
+## 🚀 Lancer le projet
+
+### Backend
+
+```bash
+cd backend
+npm install
+cp .env.example .env   # Remplir les vraies valeurs
+npm start
+```
+
+### Mobile (Expo)
+
+```bash
+cd mobile
+npm install
+cp .env.example .env   # Remplacer YOUR_LOCAL_IP par ton IP locale (ex: 192.168.1.85)
+npx expo start --clear
+```
+
+> ⚠️ Le téléphone et l'ordinateur doivent être sur le **même réseau Wi-Fi**.
+> Pour trouver ton IP : `ipconfig` (Windows) ou `ifconfig` (Mac/Linux).
+
+```
+Marhaba-App/
+├── backend/    ← API Express + PostgreSQL
+└── mobile/     ← App Expo React Native
+```
+
+---
+
+# Backend — API d'Authentification
 
 API d'authentification (Express + PostgreSQL + Sequelize + JWT) pour l'app mobile **Marhba**.
 
