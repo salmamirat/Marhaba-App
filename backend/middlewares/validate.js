@@ -5,7 +5,8 @@ function validateRegister(req, res, next) {
     return res.status(400).json({ error: "Tous les champs sont obligatoires" });
   }
 
-  if (!email.includes("@")) {
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailRegex.test(email)) {
     return res.status(400).json({ error: "Email invalide" });
   }
 
@@ -16,12 +17,16 @@ function validateRegister(req, res, next) {
   next();
 }
 
-
 function validateLogin(req, res, next) {
   const { email, password } = req.body;
 
   if (!email || !password) {
     return res.status(400).json({ error: "Email et mot de passe obligatoires" });
+  }
+
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailRegex.test(email)) {
+    return res.status(400).json({ error: "Email invalide" });
   }
 
   next();
