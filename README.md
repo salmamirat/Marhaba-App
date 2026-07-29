@@ -11,8 +11,8 @@ Application mobile d'authentification complète (Express + PostgreSQL + Expo) av
 ```bash
 cd backend
 npm install
-cp .env.example .env   # Remplir les vraies valeurs
-npm start
+cp .env.example .env
+npm run dev
 ```
 
 ### Mobile (Expo)
@@ -20,7 +20,7 @@ npm start
 ```bash
 cd mobile
 npm install
-cp .env.example .env   # Remplacer YOUR_LOCAL_IP par ton IP locale (ex: 192.168.1.85)
+cp .env.example .env
 npx expo start --clear
 ```
 
@@ -29,8 +29,8 @@ npx expo start --clear
 
 ```
 Marhaba-App/
-├── backend/    ← API Express + PostgreSQL
-└── mobile/     ← App Expo React Native
+├── backend/
+└── mobile/
 ```
 
 ---
@@ -95,7 +95,7 @@ docker ps
 ### 5. Lancer le serveur
 
 ```bash
-npm run dev
+npm start
 ```
 
 Si tout fonctionne, tu dois voir :
@@ -143,22 +143,22 @@ curl http://localhost:3000/api/auth/me \
 ```
 backend/
 ├── config/
-│   └── database.js       # connexion Sequelize / PostgreSQL
+│   └── db.js
 ├── models/
-│   └── User.js            # modele User (table users)
+│   └── user.model.js
 ├── controllers/
-│   └── authController.js  # logique metier (register, login, getMe)
+│   └── auth.controller.js
 ├── middlewares/
-│   ├── logger.js           # log methode + URL + timestamp
-│   ├── validators.js       # validateRegister / validateLogin
-│   ├── authenticate.js     # verification du JWT (req.user)
-│   └── errorHandler.js     # gestion d'erreurs globale (4 params)
+│   ├── logger.js
+│   ├── validate.js
+│   ├── authenticate.js
+│   └── errorHandler.js
 ├── routes/
-│   └── authRoutes.js       # branchement routes -> middlewares -> controllers
-├── app.js                  # config Express (middlewares globaux + routes)
-├── server.js                # point d'entree, connexion DB + listen
-├── .env                     # variables d'environnement (jamais commit)
-├── .env.example              # exemple sans vraies valeurs
+│   └── auth.routes.js
+├── app.js
+├── server.js
+├── .env
+├── .env.example
 ├── .gitignore
 └── package.json
 ```
@@ -169,16 +169,13 @@ backend/
 - Le mot de passe hashe n'est jamais renvoye dans les reponses JSON.
 - Le secret JWT vit dans `.env` (ignore par Git).
 - Le JWT expire (`JWT_EXPIRES_IN`, par defaut `7d`).
-- Message d'erreur identique pour "email inexistant" et "mauvais mot de passe" :
-  `"Email ou mot de passe incorrect"`.
+- Message d'erreur identique pour "email inexistant" et "mauvais mot de passe" : `"Email ou mot de passe incorrect"`.
 - La verification du token vit uniquement dans le middleware `authenticate`, jamais dans un controller.
-- Les erreurs inattendues (ex: probleme DB) passent par `next(err)` et sont geres par
-  le middleware `errorHandler` centralise, place en dernier dans `app.js`.
+- Les erreurs inattendues passent par `next(err)` et sont geres par le middleware `errorHandler` centralise, place en dernier dans `app.js`.
 
 ## Tester avec Postman
 
 1. Creer une collection "Marhba API".
 2. Ajouter les 3 requetes : `POST /register`, `POST /login`, `GET /me`.
-3. Tester `/me` deux fois : une fois sans token (doit retourner 401), une fois avec
-   le token recu apres login (doit retourner les infos utilisateur).
+3. Tester `/me` deux fois : une fois sans token (doit retourner 401), une fois avec le token recu apres login (doit retourner les infos utilisateur).
 4. Exporter la collection (`Export` -> format Collection v2.1) pour la livrer.

@@ -1,20 +1,28 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { View, Text, Pressable, StyleSheet } from "react-native";
 import { Feather } from "@expo/vector-icons";
 import Button from "@/components/Button";
 import { useAuthStore } from "@/store/useAuthStore";
 import { colors } from "@/theme/colors";
+import { api } from "@/services/api";
 
 export default function Home() {
   const user = useAuthStore((s) => s.user);
   const logout = useAuthStore((s) => s.logout);
   const [loading, setLoading] = useState(false);
 
+  useEffect(() => {
+    api.get("/auth/me").then(({ data }) => {
+      useAuthStore.setState({ user: data });
+    });
+  }, []);
+
   const handleLogout = async () => {
     setLoading(true);
     await logout();
     setLoading(false);
   };
+
   return (
     <View style={styles.screen}>
       <Pressable style={styles.logoutIcon} onPress={handleLogout} hitSlop={12}>
