@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { View, Text, Pressable, StyleSheet } from "react-native";
 import { Feather } from "@expo/vector-icons";
 import Button from "@/components/Button";
@@ -10,12 +10,7 @@ export default function Home() {
   const user = useAuthStore((s) => s.user);
   const logout = useAuthStore((s) => s.logout);
   const [loading, setLoading] = useState(false);
-
-  useEffect(() => {
-    api.get("/auth/me").then(({ data }) => {
-      useAuthStore.setState({ user: data });
-    });
-  }, []);
+  const user = useAuthStore((s) => s.user);
 
   const handleLogout = async () => {
     setLoading(true);
