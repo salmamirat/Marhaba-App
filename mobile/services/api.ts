@@ -1,5 +1,6 @@
 import axios from "axios";
 import * as SecureStore from "expo-secure-store";
+import { useAuthStore } from "../store/useAuthStore";
 
 const API_URL = process.env.EXPO_PUBLIC_API_URL || "http://localhost:3000/api";
 
@@ -19,7 +20,6 @@ api.interceptors.response.use(
   (response) => response,
   async (error) => {
     if (error.response?.status === 401) {
-      const { useAuthStore } = await import("../store/useAuthStore");
       useAuthStore.getState().logout();
     }
     return Promise.reject(error);
