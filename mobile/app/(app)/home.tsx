@@ -4,13 +4,11 @@ import { Feather } from "@expo/vector-icons";
 import Button from "@/components/Button";
 import { useAuthStore } from "@/store/useAuthStore";
 import { colors } from "@/theme/colors";
-import { api } from "@/services/api";
 
 export default function Home() {
   const user = useAuthStore((s) => s.user);
   const logout = useAuthStore((s) => s.logout);
   const [loading, setLoading] = useState(false);
-  const user = useAuthStore((s) => s.user);
 
   const handleLogout = async () => {
     setLoading(true);
