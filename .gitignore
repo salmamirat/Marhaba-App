@@ -1,2 +1,14 @@
-node_modules/
-.env
+# Backend
+backend/node_modules/
+backend/.env
+
+# Mobile (Expo)
+mobile/node_modules/
+mobile/.env
+mobile/.expo/
+mobile/*.log
+mobile/expo-env.d.ts
+
+# Général
+*.log
+.DS_Store
