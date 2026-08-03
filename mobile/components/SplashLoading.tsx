@@ -10,10 +10,5 @@ export default function SplashLoading() {
 }
 
 const styles = StyleSheet.create({
-  screen: {
-    flex: 1,
-    backgroundColor: colors.background,
-    alignItems: "center",
-    justifyContent: "center",
-  },
+  screen: {flex: 1, backgroundColor: colors.background, alignItems: "center", justifyContent: "center",},
 });

@@ -31,13 +31,7 @@ export default function Button({ title, onPress, loading, variant = "solid" }: B
 }
 
 const styles = StyleSheet.create({
-  base: {
-    height: 54,
-    borderRadius: 14,
-    alignItems: "center",
-    justifyContent: "center",
-    marginTop: 8,
-  },
+  base: {height: 54, borderRadius: 14, alignItems: "center", justifyContent: "center",marginTop: 8,},
   solid: { backgroundColor: colors.primary },
   outline: { borderWidth: 1.5, borderColor: colors.text },
   disabled: { opacity: 0.6 },

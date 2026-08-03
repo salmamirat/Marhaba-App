@@ -23,13 +23,6 @@ export default function Input({ label, helperText, ...inputProps }: InputProps) 
 const styles = StyleSheet.create({
   wrapper: { marginBottom: 16 },
   label: { color: colors.text, fontSize: 13, marginBottom: 8 },
-  input: {
-    backgroundColor: colors.input,
-    borderRadius: 14,
-    height: 52,
-    paddingHorizontal: 16,
-    color: colors.text,
-    fontSize: 15,
-  },
+  input: {backgroundColor: colors.input, borderRadius: 14, height: 52, paddingHorizontal: 16, color: colors.text, fontSize: 15,},
   helper: { color: colors.subtext, fontSize: 12, marginTop: 6 },
 });

@@ -10,11 +10,5 @@ export default function ErrorText({ message }: ErrorTextProps) {
 }
 
 const styles = StyleSheet.create({
-  text: {
-    color: "#FF4D4D",
-    fontSize: 14,
-    marginTop: -8,
-    marginBottom: 16,
-    fontWeight: "500",
-  },
+  text: {color: "#FF4D4D", fontSize: 14, marginTop: -8, marginBottom: 16, fontWeight: "500",},
 });
